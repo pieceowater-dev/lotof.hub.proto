@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "protos/lotof.hub.users.svc/user;user";
+option go_package = "lotof.hub.users.svc/user;user";
 
 package userservice;
 
