@@ -4,8 +4,8 @@ option go_package = "lotof.hub.users.svc;user";
 
 package userservice;
 
-import "protos/generic/filter.proto";
-import "protos/generic/list.proto";
+import "generic/filter.proto";
+import "generic/list.proto";
 
 // Define the service for managing users.
 service UserService {
