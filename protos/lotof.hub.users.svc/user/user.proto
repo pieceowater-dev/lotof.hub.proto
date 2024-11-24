@@ -4,8 +4,8 @@ option go_package = "lotof.hub.users.svc/user;user";
 
 package userservice;
 
-//import "protos/generic/filter.proto";
-//import "protos/generic/list.proto";
+import "generic/filter.proto";
+import "generic/list.proto";
 
 // Define the service for managing users.
 service UserService {
@@ -28,14 +28,14 @@ service UserService {
 // Request for retrieving a list of users.
 message GetUsersRequest {
   string search = 1; // Optional search term.
-//  generic.Pagination pagination = 2; // Pagination options.
-//  generic.Sort sort = 3; // Sorting options.
+  generic.Pagination pagination = 2; // Pagination options.
+  generic.Sort sort = 3; // Sorting options.
 }
 
 // Response for retrieving a list of users.
 message GetUsersResponse {
   repeated User users = 1; // List of users.
-//  generic.PaginationInfo pagination_info = 2; // Pagination metadata.
+  generic.PaginationInfo pagination_info = 2; // Pagination metadata.
 }
 
 // Request for retrieving a single user by ID.
