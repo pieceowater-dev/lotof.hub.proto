@@ -4,8 +4,8 @@ option go_package = "./;generated";
 
 package userservice;
 
-import "protos/generic/filter.proto";
-import "protos/generic/list.proto";
+import "protos/generic/filter/filter.proto";
+import "protos/generic/list/list.proto";
 
 // Define the service for managing users.
 service UserService {
