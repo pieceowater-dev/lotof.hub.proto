@@ -1,1 +1,1 @@
-# lotof.sample.proto
+# lotof.hub.proto
