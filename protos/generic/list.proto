@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-option go_package = "generic/list;list";
+//option go_package = "generic/list;list";
+option go_package = "app/internal/core/grpc/generated/generic/list";
 
 package generic;
 

@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-option go_package = "generic/filter;filter";
+//option go_package = "generic/filter;filter";
+option go_package = "app/internal/core/grpc/generated/generic/filter";
 
 package generic;
 
