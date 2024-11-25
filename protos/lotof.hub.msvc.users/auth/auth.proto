@@ -4,8 +4,6 @@ option go_package = "./;generated";
 
 package authservice;
 
-import "google/protobuf/empty.proto";
-
 service AuthService {
   rpc Login(LoginRequest) returns (AuthUser);
   rpc Register(RegisterRequest) returns (AuthUser);

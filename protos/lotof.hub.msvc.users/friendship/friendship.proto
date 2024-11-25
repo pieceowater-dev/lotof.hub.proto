@@ -4,13 +4,13 @@ option go_package = "./;generated";
 
 package friendshipservice;
 
-import "google/protobuf/empty.proto";
+import "generic/empty.proto";
 
 service FriendshipService {
   rpc CreateFriendRequest(CreateFriendRequest) returns (Friendship);
-  rpc AcceptFriendRequest(AcceptFriendRequest) returns (google.protobuf.Empty);
+  rpc AcceptFriendRequest(AcceptFriendRequest) returns (generic.Empty);
   rpc GetFriendRequests(GetFriendRequests) returns (FriendRequestsResponse);
-  rpc RemoveFriendRequest(RemoveFriendRequest) returns (google.protobuf.Empty);
+  rpc RemoveFriendRequest(RemoveFriendRequest) returns (generic.Empty);
 }
 
 message CreateFriendRequest {
