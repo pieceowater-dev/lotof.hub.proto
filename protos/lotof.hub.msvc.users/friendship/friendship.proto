@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option go_package = "./;generated";
+
+package friendshipservice;
+
+import "google/protobuf/empty.proto";
+
+service FriendshipService {
+  rpc CreateFriendRequest(CreateFriendRequest) returns (Friendship);
+  rpc AcceptFriendRequest(AcceptFriendRequest) returns (google.protobuf.Empty);
+  rpc GetFriendRequests(GetFriendRequests) returns (FriendRequestsResponse);
+  rpc RemoveFriendRequest(RemoveFriendRequest) returns (google.protobuf.Empty);
+}
+
+message CreateFriendRequest {
+  string user_id = 1;
+  string friend_id = 2;
+}
+
+message AcceptFriendRequest {
+  string friendship_id = 1;
+}
+
+message GetFriendRequests {
+  string user_id = 1;
+  string inout = 2;
+}
+
+message RemoveFriendRequest {
+  string friendship_id = 1;
+}
+
+message Friendship {
+  string id = 1;
+  string user_id = 2;
+  string friend_id = 3;
+  string created_at = 4;
+}
+
+message FriendRequestsResponse {
+  repeated Friendship friendships = 1;
+}
