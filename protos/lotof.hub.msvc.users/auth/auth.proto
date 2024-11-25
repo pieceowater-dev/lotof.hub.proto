@@ -4,25 +4,30 @@ option go_package = "./;generated";
 
 package authservice;
 
+import "generic/empty.proto";
+import "user/user.proto";
+
+// Auth service definition.
 service AuthService {
-  rpc Login(LoginRequest) returns (AuthUser);
-  rpc Register(RegisterRequest) returns (AuthUser);
+  rpc Login(LoginRequest) returns (AuthResponse);
+  rpc Register(RegisterRequest) returns (AuthResponse);
 }
 
+// Request for login.
 message LoginRequest {
   string email = 1;
   string password = 2;
 }
 
+// Request for registration.
 message RegisterRequest {
   string email = 1;
-  string password = 2;
-  string username = 3;
+  string username = 2;
+  string password = 3;
 }
 
-message AuthUser {
-  string id = 1;
-  string email = 2;
-  string username = 3;
-  string created_at = 4;
+// Response containing authentication data.
+message AuthResponse {
+  string token = 1; // JWT or access token.
+  userservice.User user = 2; // Associated user information.
 }

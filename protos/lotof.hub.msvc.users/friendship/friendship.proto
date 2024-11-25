@@ -5,39 +5,45 @@ option go_package = "./;generated";
 package friendshipservice;
 
 import "generic/empty.proto";
+import "generic/filter.proto";
+import "generic/list.proto";
+import "user/user.proto";
 
+// Service definition for managing friendships.
 service FriendshipService {
-  rpc CreateFriendRequest(CreateFriendRequest) returns (Friendship);
-  rpc AcceptFriendRequest(AcceptFriendRequest) returns (generic.Empty);
-  rpc GetFriendRequests(GetFriendRequests) returns (FriendRequestsResponse);
-  rpc RemoveFriendRequest(RemoveFriendRequest) returns (generic.Empty);
+  rpc CreateFriendship(CreateFriendshipInput) returns (Friendship);
+  rpc AcceptFriendshipRequest(AcceptFriendshipInput) returns (Friendship);
+  rpc RemoveFriendshipRequest(RemoveFriendshipInput) returns (generic.Empty);
+  rpc FriendshipRequestList(FriendshipFilter) returns (PaginatedFriendshipList);
 }
 
-message CreateFriendRequest {
+message CreateFriendshipInput {
   string user_id = 1;
   string friend_id = 2;
 }
 
-message AcceptFriendRequest {
+message AcceptFriendshipInput {
   string friendship_id = 1;
 }
 
-message GetFriendRequests {
+message RemoveFriendshipInput {
+  string friendship_id = 1;
+}
+
+message FriendshipFilter {
   string user_id = 1;
-  string inout = 2;
-}
-
-message RemoveFriendRequest {
-  string friendship_id = 1;
+  string inout = 2; // IN or OUT requests.
+  string search = 3;
+  generic.Pagination pagination = 4;
 }
 
 message Friendship {
   string id = 1;
-  string user_id = 2;
-  string friend_id = 3;
-  string created_at = 4;
+  userservice.User user = 2;
+  userservice.User friend = 3;
 }
 
-message FriendRequestsResponse {
+message PaginatedFriendshipList {
   repeated Friendship friendships = 1;
+  generic.PaginationInfo pagination_info = 2;
 }
