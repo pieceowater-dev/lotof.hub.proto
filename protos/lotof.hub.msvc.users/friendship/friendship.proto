@@ -7,7 +7,7 @@ package friendshipservice;
 import "generic/empty.proto";
 import "generic/filter.proto";
 import "generic/list.proto";
-import "user/user.proto";
+import "lotof.hub.msvc.users/user/user.proto";
 
 // Service definition for managing friendships.
 service FriendshipService {
