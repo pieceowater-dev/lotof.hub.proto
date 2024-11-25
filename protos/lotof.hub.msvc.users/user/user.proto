@@ -9,19 +9,10 @@ import "generic/list.proto";
 
 // Define the service for managing users.
 service UserService {
-  // Retrieves a paginated list of users.
   rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
-
-  // Retrieves a single user by ID.
   rpc GetUser(GetUserRequest) returns (User);
-
-  // Creates a new user.
   rpc CreateUser(CreateUserRequest) returns (User);
-
-  // Updates an existing user.
   rpc UpdateUser(UpdateUserRequest) returns (User);
-
-  // Deletes a user by ID.
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 }
 
