@@ -32,9 +32,7 @@ message RemoveFriendshipInput {
 
 message FriendshipFilter {
   string user_id = 1;
-  string inout = 2; // IN or OUT requests.
-  string search = 3;
-  generic.Pagination pagination = 4;
+  string status = 2;
 }
 
 message Friendship {
