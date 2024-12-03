@@ -10,6 +10,7 @@ import "lotof.hub.msvc.users/user/user.proto";
 service AuthService {
   rpc Login(LoginRequest) returns (AuthResponse);
   rpc Register(RegisterRequest) returns (AuthResponse);
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
 }
 
 // Request for login.
@@ -23,6 +24,18 @@ message RegisterRequest {
   string email = 1;
   string username = 2;
   string password = 3;
+}
+
+// Request for token validation.
+message ValidateTokenRequest {
+  string token = 1; // Token to validate (JWT or access token).
+}
+
+// Response for token validation.
+message ValidateTokenResponse {
+  bool valid = 1; // Indicates if the token is valid.
+  string message = 2; // Optional message for additional info (e.g., "Token expired").
+  userservice.User user = 3; // Associated user info if token is valid.
 }
 
 // Response containing authentication data.
