@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+option go_package = "./;generated";
+
+package serviceservice;
+
+import "generic/filter.proto";
+import "generic/list.proto";
+
+import "lotof.hub.msvc.namespaces/ns/ns.proto";
+import "lotof.hub.msvc.namespaces/member/member.proto";
+
+// Message representing a Service
+message Service {
+  string id = 1; // UUID as string
+  string app = 2; // Application name
+  nsservice.Namespace namespace = 3; // Related namespace
+  repeated memberservice.Member members = 4; // List of related members
+}
+
+// Input for creating or updating a Service
+message ServiceInput {
+  string app = 1;        // Application name
+  string namespaceId = 2; // Namespace ID
+}
+
+// Paginated list of Services
+message PaginatedServiceList {
+  repeated Service rows = 1; // List of services
+  generic.PaginationInfo info = 2; // Pagination metadata
+}
+
+// Request message for fetching a list of Services
+message ServicesRequest {
+  string search = 1;
+  generic.Pagination pagination = 2;
+  generic.Sort sort = 3;
+}
+
+// Request message for fetching Services by Namespace
+message ServicesByNamespaceRequest {
+  string namespaceId = 1;
+  string search = 2;
+  generic.Pagination pagination = 3;
+  generic.Sort sort = 4;
+}
+
+// Response message for fetching a list of Services
+message ServicesResponse {
+  PaginatedServiceList services = 1; // Paginated result
+}
+
+// Request message for fetching a specific Service by ID
+message ServiceRequest {
+  string id = 1; // Service ID
+}
+
+// Response message for fetching a specific Service
+message ServiceResponse {
+  Service service = 1; // Service object
+}
+
+// Request message for creating or updating a Service
+message ServiceMutationRequest {
+  string id = 1;         // Service ID (empty for create)
+  ServiceInput input = 2; // Input data for creation or update
+}
+
+// Response message for creating or updating a Service
+message ServiceMutationResponse {
+  Service service = 1; // Created or updated Service
+}
+
+// Request message for deleting a Service
+message DeleteServiceRequest {
+  string id = 1; // Service ID
+}
+
+// Response message for deleting a Service
+message DeleteServiceResponse {
+  bool success = 1; // Indicates if deletion was successful
+}
+
+// gRPC service definition
+service ServiceService {
+  rpc GetServices(ServicesRequest) returns (ServicesResponse);
+  rpc GetServicesByNamespace(ServicesByNamespaceRequest) returns (ServicesResponse);
+  rpc GetService(ServiceRequest) returns (ServiceResponse);
+  rpc CreateService(ServiceMutationRequest) returns (ServiceMutationResponse);
+  rpc UpdateService(ServiceMutationRequest) returns (ServiceMutationResponse);
+  rpc DeleteService(DeleteServiceRequest) returns (DeleteServiceResponse);
+}

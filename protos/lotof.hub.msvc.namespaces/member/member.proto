@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option go_package = "./;generated";
+
+package memberservice;
+
+import "generic/filter.proto";
+import "generic/list.proto";
+
+import "lotof.hub.msvc.namespaces/ns/ns.proto";
+import "lotof.hub.msvc.namespaces/service/service.proto";
+
+// Message representing a Member
+message Member {
+  string id = 1; // UUID as string
+  repeated nsservice.Namespace namespaces = 2; // List of related namespaces
+  repeated serviceservice.Service services = 3;      // List of related services
+}
+
+// Input for adding a Member to a Namespace
+message AddMemberToNamespaceInput {
+  string namespaceId = 1; // Namespace ID
+  string userId = 2;      // User ID
+}
+
+// Input for adding a Member to a Service
+message AddMemberToServiceInput {
+  string serviceId = 1; // Service ID
+  string userId = 2;    // User ID
+}
+
+// Request message for fetching Members
+message MembersRequest {
+  string search = 1;
+  generic.Pagination pagination = 2;
+  generic.Sort sort = 3;
+}
+
+// Response message for fetching Members
+message MembersResponse {
+  repeated Member members = 1; // List of members
+}
+
+// Request message for fetching a specific Member
+message MemberRequest {
+  string membershipId = 1; // Membership ID
+}
+
+// Response message for fetching a specific Member
+message MemberResponse {
+  Member member = 1; // Member object
+}
+
+// Response message for adding or removing a Member
+message NamespaceMutationResponse {
+  nsservice.Namespace namespace = 1; // Updated namespace
+}
+
+// Response message for adding or removing a Member from a Service
+message ServiceMutationResponse {
+  serviceservice.Service service = 1; // Updated service
+}
+
+// gRPC service definition
+service MemberService {
+  rpc GetMembers(MembersRequest) returns (MembersResponse);
+  rpc GetMember(MemberRequest) returns (MemberResponse);
+  rpc AddMemberToNamespace(AddMemberToNamespaceInput) returns (NamespaceMutationResponse);
+  rpc RemoveMemberFromNamespace(AddMemberToNamespaceInput) returns (NamespaceMutationResponse);
+  rpc AddMemberToService(AddMemberToServiceInput) returns (ServiceMutationResponse);
+  rpc RemoveMemberFromService(AddMemberToServiceInput) returns (ServiceMutationResponse);
+}

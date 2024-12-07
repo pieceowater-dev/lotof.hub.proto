@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+option go_package = "./;generated";
+
+package nsservice;
+
+import "generic/filter.proto";
+import "generic/list.proto";
+
+import "lotof.hub.msvc.namespaces/service/service.proto";
+import "lotof.hub.msvc.namespaces/member/member.proto";
+
+// Message representing a Namespace
+message Namespace {
+  string id = 1; // UUID as string
+  string title = 2;
+  string slug = 3;
+  string description = 4;
+  string owner = 5; // User ID
+  repeated serviceservice.Service services = 6; // List of related services
+  repeated memberservice.Member members = 7;  // List of related members
+}
+
+// Input for creating or updating a Namespace
+message NamespaceInput {
+  string title = 1;
+  string slug = 2;
+  string description = 3;
+}
+
+// Paginated list of Namespaces
+message PaginatedNamespaceList {
+  repeated Namespace rows = 1; // List of namespaces
+  generic.PaginationInfo info = 2;     // Pagination metadata (from generic.list.proto)
+}
+
+// Request message for fetching a list of Namespaces
+message NamespacesRequest {
+  string search = 1;
+  generic.Pagination pagination = 2;
+  generic.Sort sort = 3;
+}
+
+// Response message for fetching a list of Namespaces
+message NamespacesResponse {
+  PaginatedNamespaceList namespaces = 1; // Paginated result
+}
+
+// Request message for fetching a specific Namespace by ID
+message NamespaceRequest {
+  string id = 1; // Namespace ID
+}
+
+// Response message for fetching a specific Namespace
+message NamespaceResponse {
+  Namespace namespace = 1; // Namespace object
+}
+
+// Request message for creating or updating a Namespace
+message NamespaceMutationRequest {
+  string id = 1;              // Namespace ID (empty for create)
+  NamespaceInput input = 2;   // Input data for creation or update
+}
+
+// Response message for creating or updating a Namespace
+message NamespaceMutationResponse {
+  Namespace namespace = 1; // Created or updated Namespace
+}
+
+// Request message for deleting a Namespace
+message DeleteNamespaceRequest {
+  string id = 1; // Namespace ID
+}
+
+// Response message for deleting a Namespace
+message DeleteNamespaceResponse {
+  bool success = 1; // Indicates if deletion was successful
+}
+
+// gRPC service definition
+service NamespaceService {
+  rpc GetNamespaces(NamespacesRequest) returns (NamespacesResponse);
+  rpc GetNamespace(NamespaceRequest) returns (NamespaceResponse);
+  rpc CreateNamespace(NamespaceMutationRequest) returns (NamespaceMutationResponse);
+  rpc UpdateNamespace(NamespaceMutationRequest) returns (NamespaceMutationResponse);
+  rpc DeleteNamespace(DeleteNamespaceRequest) returns (DeleteNamespaceResponse);
+}
