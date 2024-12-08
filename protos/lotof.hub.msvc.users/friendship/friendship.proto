@@ -5,7 +5,6 @@ option go_package = "./;generated";
 package friendshipservice;
 
 import "generic/empty.proto";
-import "generic/filter.proto";
 import "generic/list.proto";
 import "lotof.hub.msvc.users/user/user.proto";
 

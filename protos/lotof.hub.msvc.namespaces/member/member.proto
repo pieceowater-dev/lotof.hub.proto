@@ -5,7 +5,6 @@ option go_package = "./;generated";
 package memberservice;
 
 import "generic/filter.proto";
-import "generic/list.proto";
 
 import "lotof.hub.msvc.namespaces/common.proto";
 
