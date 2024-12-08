@@ -7,6 +7,8 @@ package memberservice;
 import "generic/filter.proto";
 
 import "lotof.hub.msvc.namespaces/common.proto";
+import "lotof.hub.msvc.namespaces/ns/ns.proto";
+import "lotof.hub.msvc.namespaces/service/service.proto";
 
 // Input for adding a Member to a Namespace
 message AddMemberToNamespaceInput {
@@ -42,22 +44,13 @@ message MemberResponse {
   common.Member member = 1; // Member object
 }
 
-// Response message for adding or removing a Member
-message NamespaceMutationResponse {
-  common.Namespace namespace = 1; // Updated namespace
-}
-
-// Response message for adding or removing a Member from a Service
-message ServiceMutationResponse {
-  common.Service service = 1; // Updated service
-}
 
 // gRPC service definition
 service MemberService {
   rpc GetMembers(MembersRequest) returns (MembersResponse);
   rpc GetMember(MemberRequest) returns (MemberResponse);
-  rpc AddMemberToNamespace(AddMemberToNamespaceInput) returns (NamespaceMutationResponse);
-  rpc RemoveMemberFromNamespace(AddMemberToNamespaceInput) returns (NamespaceMutationResponse);
-  rpc AddMemberToService(AddMemberToServiceInput) returns (ServiceMutationResponse);
-  rpc RemoveMemberFromService(AddMemberToServiceInput) returns (ServiceMutationResponse);
+  rpc AddMemberToNamespace(AddMemberToNamespaceInput) returns (nsservice.NamespaceMutationResponse);
+  rpc RemoveMemberFromNamespace(AddMemberToNamespaceInput) returns (nsservice.NamespaceMutationResponse);
+  rpc AddMemberToService(AddMemberToServiceInput) returns (serviceservice.ServiceMutationResponse);
+  rpc RemoveMemberFromService(AddMemberToServiceInput) returns (serviceservice.ServiceMutationResponse);
 }
