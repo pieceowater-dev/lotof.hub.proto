@@ -7,15 +7,7 @@ package memberservice;
 import "generic/filter.proto";
 import "generic/list.proto";
 
-import "lotof.hub.msvc.namespaces/ns/ns.proto";
-import "lotof.hub.msvc.namespaces/service/service.proto";
-
-// Message representing a Member
-message Member {
-  string id = 1; // UUID as string
-  repeated nsservice.Namespace namespaces = 2; // List of related namespaces
-  repeated serviceservice.Service services = 3;      // List of related services
-}
+import "lotof.hub.msvc.namespaces/common.proto";
 
 // Input for adding a Member to a Namespace
 message AddMemberToNamespaceInput {
@@ -38,7 +30,7 @@ message MembersRequest {
 
 // Response message for fetching Members
 message MembersResponse {
-  repeated Member members = 1; // List of members
+  repeated common.Member members = 1; // List of members
 }
 
 // Request message for fetching a specific Member
@@ -48,17 +40,17 @@ message MemberRequest {
 
 // Response message for fetching a specific Member
 message MemberResponse {
-  Member member = 1; // Member object
+  common.Member member = 1; // Member object
 }
 
 // Response message for adding or removing a Member
 message NamespaceMutationResponse {
-  nsservice.Namespace namespace = 1; // Updated namespace
+  common.Namespace namespace = 1; // Updated namespace
 }
 
 // Response message for adding or removing a Member from a Service
 message ServiceMutationResponse {
-  serviceservice.Service service = 1; // Updated service
+  common.Service service = 1; // Updated service
 }
 
 // gRPC service definition

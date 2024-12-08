@@ -7,16 +7,7 @@ package serviceservice;
 import "generic/filter.proto";
 import "generic/list.proto";
 
-import "lotof.hub.msvc.namespaces/ns/ns.proto";
-import "lotof.hub.msvc.namespaces/member/member.proto";
-
-// Message representing a Service
-message Service {
-  string id = 1; // UUID as string
-  string app = 2; // Application name
-  nsservice.Namespace namespace = 3; // Related namespace
-  repeated memberservice.Member members = 4; // List of related members
-}
+import "lotof.hub.msvc.namespaces/common.proto";
 
 // Input for creating or updating a Service
 message ServiceInput {
@@ -26,7 +17,7 @@ message ServiceInput {
 
 // Paginated list of Services
 message PaginatedServiceList {
-  repeated Service rows = 1; // List of services
+  repeated common.Service rows = 1; // List of services
   generic.PaginationInfo info = 2; // Pagination metadata
 }
 
@@ -57,7 +48,7 @@ message ServiceRequest {
 
 // Response message for fetching a specific Service
 message ServiceResponse {
-  Service service = 1; // Service object
+  common.Service service = 1; // Service object
 }
 
 // Request message for creating or updating a Service
@@ -68,7 +59,7 @@ message ServiceMutationRequest {
 
 // Response message for creating or updating a Service
 message ServiceMutationResponse {
-  Service service = 1; // Created or updated Service
+  common.Service service = 1; // Created or updated Service
 }
 
 // Request message for deleting a Service
