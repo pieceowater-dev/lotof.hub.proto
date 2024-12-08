@@ -69,7 +69,7 @@ message DeleteNamespaceResponse {
 service NamespaceService {
   rpc GetNamespaces(NamespacesRequest) returns (NamespacesResponse);
   rpc GetNamespace(NamespaceRequest) returns (NamespaceResponse);
-  rpc CreateNamespace(NamespaceMutationRequest) returns (NamespaceMutationResponse);
+  rpc CreateNamespace(NamespaceInput) returns (NamespaceMutationResponse);
   rpc UpdateNamespace(NamespaceMutationRequest) returns (NamespaceMutationResponse);
   rpc DeleteNamespace(DeleteNamespaceRequest) returns (DeleteNamespaceResponse);
 }
