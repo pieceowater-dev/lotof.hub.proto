@@ -7,7 +7,6 @@ package memberservice;
 import "generic/filter.proto";
 import "generic/ok.proto";
 import "generic/list.proto";
-import "lotof.hub.msvc.namespaces/ns/ns.proto";
 
 service MemberService {
   rpc GetMembers(GetMembersRequest) returns (GetMembersResponse);
