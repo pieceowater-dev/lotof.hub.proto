@@ -7,8 +7,6 @@ package nsservice;
 import "generic/filter.proto";
 import "generic/list.proto";
 
-import "lotof.hub.msvc.namespaces/common.proto";
-
 service NamespaceService {
   rpc GetNamespaces(GetNamespacesRequest) returns (GetNamespacesResponse);
   rpc GetNamespace(GetNamespaceRequest) returns (Namespace);
