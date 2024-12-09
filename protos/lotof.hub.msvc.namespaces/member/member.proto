@@ -5,52 +5,45 @@ option go_package = "./;generated";
 package memberservice;
 
 import "generic/filter.proto";
-
-import "lotof.hub.msvc.namespaces/common.proto";
+import "generic/ok.proto";
+import "generic/list.proto";
 import "lotof.hub.msvc.namespaces/ns/ns.proto";
-import "lotof.hub.msvc.namespaces/service/service.proto";
 
-// Input for adding a Member to a Namespace
-message AddMemberToNamespaceInput {
-  string namespaceId = 1; // Namespace ID
-  string userId = 2;      // User ID
+service MemberService {
+  rpc GetMembers(GetMembersRequest) returns (GetMembersResponse);
+  rpc GetMember(GetMemberRequest) returns (GetMemberResponse);
+  rpc AddMemberToNamespace(MemberToNamespaceRequest) returns (generic.OK);
+  rpc RemoveMemberFromNamespace(MemberToNamespaceRequest) returns (generic.OK);
 }
 
-// Input for adding a Member to a Service
-message AddMemberToServiceInput {
-  string serviceId = 1; // Service ID
-  string userId = 2;    // User ID
-}
-
-// Request message for fetching Members
-message MembersRequest {
+message GetMembersRequest {
   string search = 1;
   generic.Pagination pagination = 2;
   generic.Sort sort = 3;
 }
-
-// Response message for fetching Members
-message MembersResponse {
-  repeated common.Member members = 1; // List of members
+message GetMembersResponse {
+  PaginatedMemberList members = 1;
 }
-
-// Request message for fetching a specific Member
-message MemberRequest {
-  string membershipId = 1; // Membership ID
-}
-
-// Response message for fetching a specific Member
-message MemberResponse {
-  common.Member member = 1; // Member object
+message PaginatedMemberList {
+  repeated Member rows = 1;
+  generic.PaginationInfo info = 2;
 }
 
 
-// gRPC service definition
-service MemberService {
-  rpc GetMembers(MembersRequest) returns (MembersResponse);
-  rpc GetMember(MemberRequest) returns (MemberResponse);
-  rpc AddMemberToNamespace(AddMemberToNamespaceInput) returns (nsservice.NamespaceMutationResponse);
-  rpc RemoveMemberFromNamespace(AddMemberToNamespaceInput) returns (nsservice.NamespaceMutationResponse);
-  rpc AddMemberToService(AddMemberToServiceInput) returns (serviceservice.ServiceMutationResponse);
-  rpc RemoveMemberFromService(AddMemberToServiceInput) returns (serviceservice.ServiceMutationResponse);
+message GetMemberRequest {
+  string membershipId = 1; // Member ent ID
+}
+message GetMemberResponse {
+  Member member = 1;
+}
+
+
+message Member {
+  string id = 1;
+  string userId = 2;
+}
+
+message MemberToNamespaceRequest {
+  string namespaceId = 1;
+  string userId = 2;
 }

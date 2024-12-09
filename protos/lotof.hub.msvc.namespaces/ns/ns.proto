@@ -9,67 +9,49 @@ import "generic/list.proto";
 
 import "lotof.hub.msvc.namespaces/common.proto";
 
-// Input for creating or updating a Namespace
-message NamespaceInput {
-  string title = 1;
-  string slug = 2;
-  string description = 3;
+service NamespaceService {
+  rpc GetNamespaces(GetNamespacesRequest) returns (GetNamespacesResponse);
+  rpc GetNamespace(GetNamespaceRequest) returns (Namespace);
+  rpc CreateNamespace(NamespaceRequest) returns (Namespace);
+  rpc UpdateNamespace(UpdateNamespaceRequest) returns (Namespace);
 }
 
-// Paginated list of Namespaces
-message PaginatedNamespaceList {
-  repeated common.Namespace rows = 1; // List of namespaces
-  generic.PaginationInfo info = 2;     // Pagination metadata (from generic.list.proto)
-}
-
-// Request message for fetching a list of Namespaces
-message NamespacesRequest {
+message GetNamespacesRequest {
   string search = 1;
   generic.Pagination pagination = 2;
   generic.Sort sort = 3;
 }
 
-// Response message for fetching a list of Namespaces
-message NamespacesResponse {
-  PaginatedNamespaceList namespaces = 1; // Paginated result
+message GetNamespacesResponse {
+  PaginatedNamespaceList namespaces = 1;
 }
 
-// Request message for fetching a specific Namespace by ID
+message PaginatedNamespaceList {
+  repeated Namespace rows = 1;
+  generic.PaginationInfo info = 2;
+}
+
+message GetNamespaceRequest {
+  string id = 1;
+}
+
+message Namespace {
+  string id = 1; // UUID
+  string title = 2;
+  string slug = 3;
+  string description = 4;
+  string owner = 5; // User ID
+}
+
 message NamespaceRequest {
-  string id = 1; // Namespace ID
+  string title = 1;
+  string slug = 2;
+  string description = 3;
 }
 
-// Response message for fetching a specific Namespace
-message NamespaceResponse {
-  common.Namespace namespace = 1; // Namespace object
-}
-
-// Request message for creating or updating a Namespace
-message NamespaceMutationRequest {
-  string id = 1;              // Namespace ID (empty for create)
-  NamespaceInput input = 2;   // Input data for creation or update
-}
-
-// Response message for creating or updating a Namespace
-message NamespaceMutationResponse {
-  common.Namespace namespace = 1; // Created or updated Namespace
-}
-
-// Request message for deleting a Namespace
-message DeleteNamespaceRequest {
-  string id = 1; // Namespace ID
-}
-
-// Response message for deleting a Namespace
-message DeleteNamespaceResponse {
-  bool success = 1; // Indicates if deletion was successful
-}
-
-// gRPC service definition
-service NamespaceService {
-  rpc GetNamespaces(NamespacesRequest) returns (NamespacesResponse);
-  rpc GetNamespace(NamespaceRequest) returns (NamespaceResponse);
-  rpc CreateNamespace(NamespaceInput) returns (NamespaceMutationResponse);
-  rpc UpdateNamespace(NamespaceMutationRequest) returns (NamespaceMutationResponse);
-  rpc DeleteNamespace(DeleteNamespaceRequest) returns (DeleteNamespaceResponse);
+message UpdateNamespaceRequest {
+  string id = 1;
+  string title = 2;
+  string slug = 3;
+  string description = 4;
 }
