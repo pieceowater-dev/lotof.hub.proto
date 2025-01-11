@@ -12,6 +12,7 @@ service NamespaceService {
   rpc GetNamespace(GetNamespaceRequest) returns (Namespace);
   rpc CreateNamespace(NamespaceRequest) returns (Namespace);
   rpc UpdateNamespace(UpdateNamespaceRequest) returns (Namespace);
+  rpc AddAppToNamespace(AddAppToNamespaceRequest) returns (NamespaceApp);
 }
 
 message GetNamespacesRequest {
@@ -52,4 +53,15 @@ message UpdateNamespaceRequest {
   string title = 2;
   string slug = 3;
   string description = 4;
+}
+
+message AddAppToNamespaceRequest {
+  string namespace_id = 1; // UUID
+  string app_bundle = 2;   // App Bundle Name
+}
+
+message NamespaceApp {
+  string id = 1;           // UUID
+  string namespace_id = 2; // Namespace UUID
+  string app_bundle = 3;   // App Bundle Name
 }
