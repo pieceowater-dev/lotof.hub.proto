@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./;generated";
+
+package gtwservice;
+
+service GatewayService {
+  rpc GatewayNamespacesByApp(GatewayNamespacesByAppRequest) returns (GatewayNamespacesByAppResponse);
+}
+
+message GatewayNamespacesByAppRequest {
+  string app_bundle = 1; // App Bundle Name
+}
+
+message GatewayNamespacesByAppResponse {
+  repeated GatewayEncryptedTenant tenants = 1;
+}
+
+message GatewayEncryptedTenant {
+  string namespace = 1;   // Namespace slug
+  string credentials = 2; // Encrypted "username:password"
+}
