@@ -12,7 +12,9 @@ service NamespaceService {
   rpc GetNamespace(GetNamespaceRequest) returns (Namespace);
   rpc CreateNamespace(NamespaceRequest) returns (Namespace);
   rpc UpdateNamespace(UpdateNamespaceRequest) returns (Namespace);
+
   rpc AddAppToNamespace(AddAppToNamespaceRequest) returns (NamespaceApp);
+  rpc NamespacesByApp(NamespacesByAppRequest) returns (NamespacesByAppResponse);
 }
 
 message GetNamespacesRequest {
@@ -64,4 +66,17 @@ message NamespaceApp {
   string id = 1;           // UUID
   string namespace_id = 2; // Namespace UUID
   string app_bundle = 3;   // App Bundle Name
+}
+
+message NamespacesByAppRequest {
+  string app_bundle = 1; // App Bundle Name
+}
+
+message NamespacesByAppResponse {
+  repeated EncryptedTenant tenants = 1;
+}
+
+message EncryptedTenant {
+  string namespace = 1;   // Namespace slug
+  string credentials = 2; // Encrypted "username:password"
 }
