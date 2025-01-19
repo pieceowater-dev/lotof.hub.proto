@@ -80,3 +80,4 @@ message EncryptedTenant {
   string namespace = 1;   // Namespace slug
   string credentials = 2; // Encrypted "username:password"
 }
+
