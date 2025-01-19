@@ -4,7 +4,7 @@ option go_package = "lotof.hub.proto/lotof.hub.msvc.users/auth";
 
 package authService;
 
-import "lotof.hub.msvc.users/user/user.proto";
+import "lotof.hub.proto/protos/lotof.hub.msvc.users/user/user.proto";
 
 // Auth service definition.
 service AuthService {

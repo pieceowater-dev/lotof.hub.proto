@@ -4,9 +4,9 @@ option go_package = "lotof.hub.proto/lotof.hub.msvc.namespaces/member";
 
 package memberService;
 
-import "generic/utils/filter.proto";
-import "generic/utils/ok.proto";
-import "generic/utils/list.proto";
+import "lotof.hub.proto/protos/generic/utils/filter.proto";
+import "lotof.hub.proto/protos/generic/utils/ok.proto";
+import "lotof.hub.proto/protos/generic/utils/list.proto";
 
 service MemberService {
   rpc GetMembers(GetMembersRequest) returns (GetMembersResponse);
