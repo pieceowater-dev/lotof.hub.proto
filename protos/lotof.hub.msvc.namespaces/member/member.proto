@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-option go_package = "lotof.hub.proto/lotof.hub.msvc.namespaces/member";
+option go_package = "lotof.hub.proto/protos/lotof.hub.msvc.namespaces/member";
+
 
 package memberService;
 
