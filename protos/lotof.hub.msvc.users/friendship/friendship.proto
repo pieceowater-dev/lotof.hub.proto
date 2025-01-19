@@ -4,9 +4,9 @@ option go_package = "lotof.hub.proto/lotof.hub.msvc.users/friendship";
 
 package friendshipService;
 
-import "lotof.hub.proto/protos/generic/utils/empty.proto";
-import "lotof.hub.proto/protos/generic/utils/list.proto";
-import "lotof.hub.proto/protos/lotof.hub.msvc.users/user/user.proto";
+import "protos/generic/utils/empty.proto";
+import "protos/generic/utils/list.proto";
+import "protos/lotof.hub.msvc.users/user/user.proto";
 
 // Service definition for managing friendships.
 service FriendshipService {
