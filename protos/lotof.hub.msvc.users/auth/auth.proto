@@ -35,11 +35,11 @@ message ValidateTokenRequest {
 message ValidateTokenResponse {
   bool valid = 1; // Indicates if the token is valid.
   string message = 2; // Optional message for additional info (e.g., "Token expired").
-  userservice.User user = 3; // Associated user info if token is valid.
+  userService.User user = 3; // Associated user info if token is valid.
 }
 
 // Response containing authentication data.
 message AuthResponse {
   string token = 1; // JWT or access token.
-  userservice.User user = 2; // Associated user information.
+  userService.User user = 2; // Associated user information.
 }
