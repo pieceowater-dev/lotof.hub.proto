@@ -3,7 +3,7 @@ syntax = "proto3";
 option go_package = "./;lotof.hub.proto/protos/lotof.hub.msvc.namespaces/member";
 
 
-package memberService;
+package member;
 
 import "generic/utils/filter.proto";
 import "generic/utils/ok.proto";
@@ -12,21 +12,21 @@ import "generic/utils/list.proto";
 service MemberService {
   rpc GetMembers(GetMembersRequest) returns (GetMembersResponse);
   rpc GetMember(GetMemberRequest) returns (GetMemberResponse);
-  rpc AddMemberToNamespace(MemberToNamespaceRequest) returns (genericUtils.OK);
-  rpc RemoveMemberFromNamespace(MemberToNamespaceRequest) returns (genericUtils.OK);
+  rpc AddMemberToNamespace(MemberToNamespaceRequest) returns (utils.OK);
+  rpc RemoveMemberFromNamespace(MemberToNamespaceRequest) returns (utils.OK);
 }
 
 message GetMembersRequest {
   string search = 1;
-  genericUtils.Pagination pagination = 2;
-  genericUtils.Sort sort = 3;
+  utils.Pagination pagination = 2;
+  utils.Sort sort = 3;
 }
 message GetMembersResponse {
   PaginatedMemberList members = 1;
 }
 message PaginatedMemberList {
   repeated Member rows = 1;
-  genericUtils.PaginationInfo info = 2;
+  utils.PaginationInfo info = 2;
 }
 
 

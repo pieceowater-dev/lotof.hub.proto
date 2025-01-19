@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "./;lotof.hub.proto/protos/lotof.hub.msvc.users/friendship";
 
-package friendshipService;
+package friendship;
 
 import "generic/utils/empty.proto";
 import "generic/utils/list.proto";
@@ -12,7 +12,7 @@ import "lotof.hub.msvc.users/user/user.proto";
 service FriendshipService {
   rpc CreateFriendship(CreateFriendshipInput) returns (Friendship);
   rpc AcceptFriendshipRequest(AcceptFriendshipInput) returns (Friendship);
-  rpc RemoveFriendshipRequest(RemoveFriendshipInput) returns (genericUtils.Empty);
+  rpc RemoveFriendshipRequest(RemoveFriendshipInput) returns (utils.Empty);
   rpc FriendshipRequestList(FriendshipFilter) returns (PaginatedFriendshipList);
 }
 
@@ -36,12 +36,12 @@ message FriendshipFilter {
 
 message Friendship {
   string id = 1;
-  userService.User user = 2;
-  userService.User friend = 3;
+  user.User user = 2;
+  user.User friend = 3;
   uint32 status = 4;
 }
 
 message PaginatedFriendshipList {
   repeated Friendship friendships = 1;
-  genericUtils.PaginationInfo pagination_info = 2;
+  utils.PaginationInfo pagination_info = 2;
 }

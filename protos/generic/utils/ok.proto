@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "./;lotof.hub.proto/protos/generic/utils";
 
-package genericUtils;
+package utils;
 
 message OK {
   bool ok = 1;
