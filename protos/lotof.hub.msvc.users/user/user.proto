@@ -4,8 +4,8 @@ option go_package = "lotof.hub.proto/lotof.hub.msvc.users/user";
 
 package userService;
 
-import "generic/filter.proto";
-import "generic/list.proto";
+import "generic/utils/filter.proto";
+import "generic/utils/list.proto";
 
 // Service definition for managing users.
 service UserService {
@@ -17,13 +17,13 @@ service UserService {
 
 message GetUsersRequest {
   string search = 1;
-  generic.Pagination pagination = 2;
-  generic.Sort sort = 3;
+  genericUtils.Pagination pagination = 2;
+  genericUtils.Sort sort = 3;
 }
 
 message GetUsersResponse {
   repeated User users = 1;
-  generic.PaginationInfo pagination_info = 2;
+  genericUtils.PaginationInfo pagination_info = 2;
 }
 
 message GetUserRequest {

@@ -4,8 +4,8 @@ option go_package = "lotof.hub.proto/lotof.hub.msvc.namespaces/ns";
 
 package nsService;
 
-import "generic/filter.proto";
-import "generic/list.proto";
+import "generic/utils/filter.proto";
+import "generic/utils/list.proto";
 
 service NamespaceService {
   rpc GetNamespaces(GetNamespacesRequest) returns (GetNamespacesResponse);
@@ -19,8 +19,8 @@ service NamespaceService {
 
 message GetNamespacesRequest {
   string search = 1;
-  generic.Pagination pagination = 2;
-  generic.Sort sort = 3;
+  genericUtils.Pagination pagination = 2;
+  genericUtils.Sort sort = 3;
 }
 
 message GetNamespacesResponse {
@@ -29,7 +29,7 @@ message GetNamespacesResponse {
 
 message PaginatedNamespaceList {
   repeated Namespace rows = 1;
-  generic.PaginationInfo info = 2;
+  genericUtils.PaginationInfo info = 2;
 }
 
 message GetNamespaceRequest {

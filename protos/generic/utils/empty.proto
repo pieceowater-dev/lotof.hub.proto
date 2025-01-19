@@ -2,8 +2,6 @@ syntax = "proto3";
 
 option go_package = "lotof.hub.proto/generic";
 
-package generic;
+package genericUtils;
 
-message OK {
-  bool ok = 1;
-}
+message Empty {}

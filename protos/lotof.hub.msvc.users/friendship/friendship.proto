@@ -4,15 +4,15 @@ option go_package = "lotof.hub.proto/lotof.hub.msvc.users/friendship";
 
 package friendshipService;
 
-import "generic/empty.proto";
-import "generic/list.proto";
+import "generic/utils/empty.proto";
+import "generic/utils/list.proto";
 import "lotof.hub.msvc.users/user/user.proto";
 
 // Service definition for managing friendships.
 service FriendshipService {
   rpc CreateFriendship(CreateFriendshipInput) returns (Friendship);
   rpc AcceptFriendshipRequest(AcceptFriendshipInput) returns (Friendship);
-  rpc RemoveFriendshipRequest(RemoveFriendshipInput) returns (generic.Empty);
+  rpc RemoveFriendshipRequest(RemoveFriendshipInput) returns (genericUtils.Empty);
   rpc FriendshipRequestList(FriendshipFilter) returns (PaginatedFriendshipList);
 }
 
@@ -43,5 +43,5 @@ message Friendship {
 
 message PaginatedFriendshipList {
   repeated Friendship friendships = 1;
-  generic.PaginationInfo pagination_info = 2;
+  genericUtils.PaginationInfo pagination_info = 2;
 }
