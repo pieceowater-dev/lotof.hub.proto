@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "lotof.hub.proto/protos/lotof.hub.msvc.users/auth";
+option go_package = "./;lotof.hub.proto/protos/lotof.hub.msvc.users/auth";
 
 package authService;
 
