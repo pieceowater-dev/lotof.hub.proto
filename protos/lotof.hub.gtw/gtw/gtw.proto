@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "lotof.hub.proto/protos/lotof.hub.gtw/gtw";
+option go_package = "internal/core/grpc/generated/lotof.hub.proto/lotof.hub.gtw/gtw";
 
 package gtw;
 
