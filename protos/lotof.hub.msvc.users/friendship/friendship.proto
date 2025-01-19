@@ -36,8 +36,8 @@ message FriendshipFilter {
 
 message Friendship {
   string id = 1;
-  userservice.User user = 2;
-  userservice.User friend = 3;
+  userService.User user = 2;
+  userService.User friend = 3;
   uint32 status = 4;
 }
 
