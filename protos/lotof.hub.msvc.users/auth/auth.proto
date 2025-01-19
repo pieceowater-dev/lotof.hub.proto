@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "./;lotof.hub.proto/protos/lotof.hub.msvc.users/auth";
 
-package authService;
+package auth;
 
 import "lotof.hub.msvc.users/user/user.proto";
 
@@ -35,11 +35,11 @@ message ValidateTokenRequest {
 message ValidateTokenResponse {
   bool valid = 1; // Indicates if the token is valid.
   string message = 2; // Optional message for additional info (e.g., "Token expired").
-  userService.User user = 3; // Associated user info if token is valid.
+  user.User user = 3; // Associated user info if token is valid.
 }
 
 // Response containing authentication data.
 message AuthResponse {
   string token = 1; // JWT or access token.
-  userService.User user = 2; // Associated user information.
+  user.User user = 2; // Associated user information.
 }
