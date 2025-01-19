@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "./;generated";
+option go_package = "lotof.hub.proto/lotof.hub.gtw/gtw";
 
-package gtwservice;
+package gtwService;
 
 service GatewayService {
   rpc GatewayNamespacesByApp(GatewayNamespacesByAppRequest) returns (GatewayNamespacesByAppResponse);

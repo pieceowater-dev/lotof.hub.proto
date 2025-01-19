@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "./;generated";
+option go_package = "lotof.hub.proto/lotof.hub.msvc.namespaces/member";
 
-package memberservice;
+package memberService;
 
 import "generic/filter.proto";
 import "generic/ok.proto";
