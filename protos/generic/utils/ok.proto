@@ -7,6 +7,3 @@ package genericUtils;
 message OK {
   bool ok = 1;
 }
-
-
-
